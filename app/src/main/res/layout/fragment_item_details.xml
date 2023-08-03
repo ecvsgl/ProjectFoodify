@@ -1,32 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.ItemDetailsFragment" >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/buttonAddToCart"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Add to Cart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+    <data>
+        <variable
+            name="itemDetailsToolbarTitle"
+            type="String" />
+        <variable
+            name="itemDetailsFragmentDataBindingVariable"
+            type="com.foodify.ui.fragment.ItemDetailsFragment" />
+        <variable
+            name="ItemEntityDataBindingVariable"
+            type="com.foodify.data.entity.Item" />
+        <variable
+            name="itemQuantityDataBindingVariable"
+            type="String" />
+    </data>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarDetailspage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.ItemDetailsFragment">
+
+        <Button
+            android:id="@+id/buttonAddToCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Add to Cart"
+            android:onClick="@{view -> itemDetailsFragmentDataBindingVariable.addToCart(view,textViewDetailsItemName.getText().toString(),textViewDetailsItemUnitPrice.getText().toString(),textViewDetailsItemQuantity.getText().toString())}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarDetailspage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewItemDetailsPicture"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetailspage"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textViewDetailsItemUnitPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewItemDetailsPicture" />
+
+        <TextView
+            android:id="@+id/textViewDetailsItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailsItemUnitPrice" />
+
+        <ImageView
+            android:id="@+id/imageViewIncrementButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/orange_add_button_vector"
+            android:onClick="@{() -> itemDetailsFragmentDataBindingVariable.buttonIncrementClick(textViewDetailsItemQuantity.getText().toString())}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewDecrementButton"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewItemDetailsPicture"
+            app:layout_constraintTop_toTopOf="@+id/imageViewDecrementButton"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageViewDecrementButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/orange_remove_button_vector"
+            android:onClick="@{() -> itemDetailsFragmentDataBindingVariable.buttonDecrementClick(textViewDetailsItemQuantity.getText().toString())}"
+            app:layout_constraintStart_toStartOf="@+id/imageViewItemDetailsPicture"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailsItemName" />
+
+        <TextView
+            android:id="@+id/textViewDetailsItemQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{itemQuantityDataBindingVariable}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewDecrementButton"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIncrementButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageViewDecrementButton"
+            app:layout_constraintTop_toTopOf="@+id/imageViewDecrementButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

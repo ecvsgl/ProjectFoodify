@@ -23,9 +23,11 @@ class ItemAdapter (var mContext:Context, var itemsList:List<Item>)
     override fun onBindViewHolder(holder: CardDesignHolder, position: Int) {
         val item = itemsList.get(position)
         val d = holder.design
+        val price = item.ItemPrice.toString()
 
-        d.textViewItemName.text = item.itemName
-        d.textViewItemPrice.text = item.ItemPrice.toString()
+        d.textViewItemName.text = "${item.itemName}"
+        d.textViewItemPrice.text = "${price} ₺"
+        //d.imageViewItemPicture.setImageResource(mContext.resources.getIdentifier(item.itemPicture)
 
         d.imageViewItemDetailsTransfer.setOnClickListener {
             val transfer = MainpageFragmentDirections.routeMainpageToDetails(item = item)

@@ -27,9 +27,6 @@
         android:name="com.foodify.ui.fragment.ItemDetailsFragment"
         android:label="fragment_item_details"
         tools:layout="@layout/fragment_item_details" >
-        <action
-            android:id="@+id/routeDetailsToCart"
-            app:destination="@id/cartFragment" />
         <argument
             android:name="item"
             app:argType="com.foodify.data.entity.Item" />

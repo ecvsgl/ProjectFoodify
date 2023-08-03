@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.foodify.R
 import com.foodify.databinding.FragmentCartBinding
 import com.foodify.databinding.FragmentMainpageBinding
+import com.google.android.material.snackbar.Snackbar
 
 class CartFragment : Fragment() {
     private lateinit var binding : FragmentCartBinding
@@ -22,6 +23,7 @@ class CartFragment : Fragment() {
 
         binding.buttonCartApprove.setOnClickListener {
             Log.e("Checkout", "OrderConfirmed")
+            Snackbar.make(it, "Order confirmed. Thank you!", Snackbar.LENGTH_SHORT).show()
         }
 
         return binding.root

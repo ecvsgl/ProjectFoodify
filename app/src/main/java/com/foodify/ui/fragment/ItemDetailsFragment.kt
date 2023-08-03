@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
+import com.foodify.R
 import com.foodify.databinding.FragmentItemDetailsBinding
+import com.google.android.material.snackbar.Snackbar
+
 
 class ItemDetailsFragment : Fragment() {
     private lateinit var binding : FragmentItemDetailsBinding
@@ -15,32 +19,40 @@ class ItemDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentItemDetailsBinding.inflate(inflater,container,false)
-
-        binding.toolbarDetailspage.title = "Select Order Amount"
+        binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_item_details,container,false)
+        binding.itemDetailsFragmentDataBindingVariable = this
+        binding.toolbarDetailspage.title = "Product Details"
+        binding.itemQuantityDataBindingVariable = "1"
 
         val bundle: ItemDetailsFragmentArgs by navArgs()
         val incomingItem = bundle.item
+        binding.itemEntityDataBindingVariable = incomingItem
 
-        //binding.itemImage.set(...nasıl bilmiyorum recheck...)
-        //binding.itemName.setText(incomingItem.itemName)
-        //binding.itemPrice.setText(incomingItem.itemPrice)
+        //binding.imageViewItemDetailsPicture.setImageResource() --> TBD
 
-        binding.buttonAddToCart.setOnClickListener {
-            /*
-            val itemCount = binding.itemOrderAmount.text.toString()
-            val itemId = binding.itemId.text.toString()
-            addToCart()
-            */
-
-        }
+        binding.textViewDetailsItemName.text = incomingItem.itemName
+        binding.textViewDetailsItemUnitPrice.text = "${incomingItem.ItemPrice} ₺"
 
         return binding.root
     }
 
-    fun addToCart(itemCount:String, itemId:String){
-        Log.e("Item persistance to Cart Performed", "$itemCount - $itemId")
+    fun addToCart(view: View,itemName:String, itemPrice:String, itemQuantity:String){
+        Snackbar.make(view, "$itemName added to cart!",Snackbar.LENGTH_SHORT).show()
+        // ADD CART PERSISTENCE HERE
+    }
 
+    fun buttonIncrementClick(currentQuantity:String){
+        val oldQuantity = currentQuantity.toInt()
+        val newQuantity = oldQuantity+1
+        binding.itemQuantityDataBindingVariable = newQuantity.toString()
+    }
+    fun buttonDecrementClick(currentQuantity:String){
+        val oldQuantity = currentQuantity.toInt()
+        if(oldQuantity>1){
+            val newQuantity = oldQuantity-1
+            binding.itemQuantityDataBindingVariable = newQuantity.toString()
+        }
     }
 
 }
