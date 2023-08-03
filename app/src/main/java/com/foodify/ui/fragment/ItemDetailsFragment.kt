@@ -7,14 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.foodify.R
 import com.foodify.databinding.FragmentItemDetailsBinding
+import com.foodify.ui.viewmodel.ItemDetailsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
 class ItemDetailsFragment : Fragment() {
     private lateinit var binding : FragmentItemDetailsBinding
+    private lateinit var viewModel: ItemDetailsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +26,10 @@ class ItemDetailsFragment : Fragment() {
             .inflate(inflater, R.layout.fragment_item_details,container,false)
         binding.itemDetailsFragmentDataBindingVariable = this
         binding.toolbarDetailspage.title = "Product Details"
-        binding.itemQuantityDataBindingVariable = "1"
+
+        viewModel.itemQuantity.observe(viewLifecycleOwner){
+            binding.itemQuantityDataBindingVariable = it
+        }
 
         val bundle: ItemDetailsFragmentArgs by navArgs()
         val incomingItem = bundle.item
@@ -31,28 +37,23 @@ class ItemDetailsFragment : Fragment() {
 
         //binding.imageViewItemDetailsPicture.setImageResource() --> TBD
 
-        binding.textViewDetailsItemName.text = incomingItem.itemName
-        binding.textViewDetailsItemUnitPrice.text = "${incomingItem.ItemPrice} ₺"
-
         return binding.root
+    }
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
+        val tempViewModel: ItemDetailsViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     fun addToCart(view: View,itemName:String, itemPrice:String, itemQuantity:String){
-        Snackbar.make(view, "$itemName added to cart!",Snackbar.LENGTH_SHORT).show()
-        // ADD CART PERSISTENCE HERE
+        viewModel.addToCart(view,itemName,itemPrice,itemQuantity)
     }
 
     fun buttonIncrementClick(currentQuantity:String){
-        val oldQuantity = currentQuantity.toInt()
-        val newQuantity = oldQuantity+1
-        binding.itemQuantityDataBindingVariable = newQuantity.toString()
+        viewModel.buttonIncrementClick(currentQuantity)
     }
     fun buttonDecrementClick(currentQuantity:String){
-        val oldQuantity = currentQuantity.toInt()
-        if(oldQuantity>1){
-            val newQuantity = oldQuantity-1
-            binding.itemQuantityDataBindingVariable = newQuantity.toString()
-        }
+        viewModel.buttonDecrementClick(currentQuantity)
     }
 
 }

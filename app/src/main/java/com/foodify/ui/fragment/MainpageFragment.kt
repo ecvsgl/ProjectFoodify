@@ -69,6 +69,7 @@ class MainpageFragment : Fragment(), SearchView.OnQueryTextListener {
         return binding.root
     }
 
+
     override fun onQueryTextSubmit(query: String): Boolean {
         search(query)
         return true

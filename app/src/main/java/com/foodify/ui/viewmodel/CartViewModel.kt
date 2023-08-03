@@ -1,4 +1,6 @@
 package com.foodify.ui.viewmodel
 
-class CartViewModel {
+import androidx.lifecycle.ViewModel
+
+class CartViewModel : ViewModel() {
 }
