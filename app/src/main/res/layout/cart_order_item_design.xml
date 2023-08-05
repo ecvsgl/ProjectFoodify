@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cartItemEntityDataBindingVariable"
+            type="com.foodify.data.entity.CartItemEntity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewLeaf"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="15dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageViewItemPicture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/textViewCartItemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="@{cartItemEntityDataBindingVariable.cartItemName}"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewItemPicture"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewItemPicture" />
+
+                <TextView
+                    android:id="@+id/textViewCartItemPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cartItemEntityDataBindingVariable.cartItemPrice}"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewCartItemQuantity"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCartItemName"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCartItemName" />
+
+                <TextView
+                    android:id="@+id/textViewCartItemQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cartItemEntityDataBindingVariable.cartItemPrice}"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewItemPicture"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCartItemPrice" />
+
+                <ImageView
+                    android:id="@+id/imageViewCartItemRemoveButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewItemPicture"
+                    app:srcCompat="@drawable/orange_delete_button_vector" />
+
+                <TextView
+                    android:id="@+id/textViewCartItemSubtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(cartItemEntityDataBindingVariable.totalCostOfCartItemEntity)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewItemPicture"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewCartItemRemoveButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

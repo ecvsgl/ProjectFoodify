@@ -3,31 +3,28 @@ package com.foodify.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.foodify.R
 import com.foodify.data.entity.Item
 import com.foodify.databinding.CardItemDesignBinding
 import com.foodify.ui.fragment.MainpageFragmentDirections
+import com.foodify.ui.viewmodel.MainpageViewModel
 import com.foodify.utils.doPageTransfer
 
-class ItemAdapter (var mContext:Context, var itemsList:List<Item>)
+class ItemAdapter (var mContext:Context, var itemsList:List<Item>, var viewModel: MainpageViewModel)
     : RecyclerView.Adapter<ItemAdapter.CardDesignHolder>(){
-
     inner class CardDesignHolder(var design:CardItemDesignBinding) : RecyclerView.ViewHolder(design.root)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardDesignHolder {
-        val binding = CardItemDesignBinding.inflate(LayoutInflater.from(mContext),parent,false)
+        val binding : CardItemDesignBinding = DataBindingUtil
+            .inflate(LayoutInflater.from(mContext), R.layout.card_item_design,parent,false)
         return CardDesignHolder(binding)
     }
-
     override fun onBindViewHolder(holder: CardDesignHolder, position: Int) {
         val item = itemsList.get(position)
         val d = holder.design
-        val price = item.ItemPrice.toString()
-
-        d.textViewItemName.text = "${item.itemName}"
-        d.textViewItemPrice.text = "${price} ₺"
-        //d.imageViewItemPicture.setImageResource(mContext.resources.getIdentifier(item.itemPicture)
+        d.itemEntityDataBindingVariable = item
 
         d.imageViewItemDetailsTransfer.setOnClickListener {
             val transfer = MainpageFragmentDirections.routeMainpageToDetails(item = item)

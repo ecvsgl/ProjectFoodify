@@ -9,9 +9,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ItemDetailsViewModel : ViewModel() {
+class ItemDetailsViewModel (var itemRepository: ItemRepository) : ViewModel() {
     var itemQuantity = MutableLiveData( "1")
-    var itemRepository = ItemRepository()
 
     fun buttonIncrementClick(currentQuantity:String){
         CoroutineScope(Dispatchers.Main).launch{
@@ -25,7 +24,8 @@ class ItemDetailsViewModel : ViewModel() {
     }
 
     fun addToCart(view: View, itemName:String, itemPrice:String, itemQuantity:String){
-        Snackbar.make(view, "$itemName added to cart!", Snackbar.LENGTH_SHORT).show()
-        // ADD CART PERSISTENCE HERE
+        CoroutineScope(Dispatchers.Main).launch {
+            itemRepository.addToCart(view,itemName,itemPrice,itemQuantity)
+        }
     }
 }

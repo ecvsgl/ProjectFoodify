@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,33 +22,25 @@ import com.foodify.R
 import com.foodify.data.entity.Item
 import com.foodify.databinding.FragmentMainpageBinding
 import com.foodify.ui.adapter.ItemAdapter
+import com.foodify.ui.viewmodel.MainpageViewModel
 
 class MainpageFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentMainpageBinding
+    private lateinit var viewModel : MainpageViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainpageBinding.inflate(inflater,container,false)
-
-        binding.toolbarMainpage.title = "Foodify"
-
+        binding = DataBindingUtil
+            .inflate(inflater,R.layout.fragment_mainpage,container,false)
+        binding.mainpageFragmentDataBindingVariable = this
+        binding.mainpageToolbarTitle = "Foodify"
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarMainpage)
 
-        binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
-
-        val itemsList = ArrayList<Item>()
-
-        val itemEntity1 = Item(1,"Sütlaç", "ec", 3)
-        val itemEntity2 = Item(2,"Dondurma", "ec", 17)
-        val itemEntity3 = Item(3,"Baklava", "ec", 300)
-
-        itemsList.add(itemEntity1)
-        itemsList.add(itemEntity2)
-        itemsList.add(itemEntity3)
-
-        val adapter = ItemAdapter(requireContext(), itemsList)
-        binding.recyclerView.adapter = adapter
+        viewModel.itemsList.observe(viewLifecycleOwner){
+            val adapter = ItemAdapter(requireContext(),it,viewModel)
+            binding.itemAdapterDataBindingVariable = adapter
+        }
 
         requireActivity().addMenuProvider(object :MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -56,32 +50,34 @@ class MainpageFragment : Fragment(), SearchView.OnQueryTextListener {
                 val searchView = item.actionView as SearchView
                 searchView.setOnQueryTextListener(this@MainpageFragment)
             }
-
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return false
             }
-
         },viewLifecycleOwner,Lifecycle.State.RESUMED)
 
-        binding.floatingActionButton.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.routeMainpageToCart)
-        }
         return binding.root
     }
+    fun floatingActionButtonClick(it:View){
+        Navigation.findNavController(it).navigate(R.id.routeMainpageToCart)
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: MainpageViewModel by viewModels()
+        viewModel = tempViewModel
 
-
+    }
     override fun onQueryTextSubmit(query: String): Boolean {
-        search(query)
+        viewModel.search(query)
         return true
     }
 
-    override fun onQueryTextChange(newText: String): Boolean {
-        search(newText)
+    override fun onQueryTextChange(query: String): Boolean {
+        viewModel.search(query)
         return true
     }
 
-    fun search(searchString: String){
-        Log.e("Item Search", searchString)
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadMenuItems()
     }
-
 }

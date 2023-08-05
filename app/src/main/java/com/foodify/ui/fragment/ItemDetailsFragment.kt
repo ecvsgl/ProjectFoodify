@@ -25,7 +25,7 @@ class ItemDetailsFragment : Fragment() {
         binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_item_details,container,false)
         binding.itemDetailsFragmentDataBindingVariable = this
-        binding.toolbarDetailspage.title = "Product Details"
+        binding.itemDetailsToolbarTitle = "Product Details"
 
         viewModel.itemQuantity.observe(viewLifecycleOwner){
             binding.itemQuantityDataBindingVariable = it
@@ -34,8 +34,6 @@ class ItemDetailsFragment : Fragment() {
         val bundle: ItemDetailsFragmentArgs by navArgs()
         val incomingItem = bundle.item
         binding.itemEntityDataBindingVariable = incomingItem
-
-        //binding.imageViewItemDetailsPicture.setImageResource() --> TBD
 
         return binding.root
     }
