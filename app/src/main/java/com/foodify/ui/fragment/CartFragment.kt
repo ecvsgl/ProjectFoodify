@@ -14,6 +14,9 @@ import com.foodify.databinding.FragmentMainpageBinding
 import com.foodify.ui.adapter.CartAdapter
 import com.foodify.ui.viewmodel.CartViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class CartFragment : Fragment() {
     private lateinit var binding : FragmentCartBinding
@@ -27,7 +30,7 @@ class CartFragment : Fragment() {
         binding.cartFragmentDataBindingVariable = this
 
         viewModel.cartItemsList.observe(viewLifecycleOwner){
-            val adapter = CartAdapter(requireContext(),it,viewModel)
+            val adapter = it?.let {it -> CartAdapter(requireContext(),it,viewModel)}
             binding.cartAdapterDataBindingVariable = adapter
         }
         viewModel.totalOrderPrice.observe(viewLifecycleOwner){

@@ -31,7 +31,6 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:text="Add to Cart"
-            android:onClick="@{view -> itemDetailsFragmentDataBindingVariable.addToCart(view,textViewDetailsItemName.getText().toString(),textViewDetailsItemUnitPrice.getText().toString(),textViewDetailsItemQuantity.getText().toString())}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

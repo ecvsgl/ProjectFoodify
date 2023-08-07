@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.foodify.R
 import com.foodify.data.entity.Item
 import com.foodify.databinding.CardItemDesignBinding
@@ -24,6 +25,10 @@ class ItemAdapter (var mContext:Context, var itemsList:List<Item>, var viewModel
     override fun onBindViewHolder(holder: CardDesignHolder, position: Int) {
         val item = itemsList.get(position)
         val d = holder.design
+
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${item.itemPicture}"
+        Glide.with(mContext).load(url).override(140,140).into(d.imageViewItemPicture)
+
         d.itemEntityDataBindingVariable = item
 
         d.imageViewItemDetailsTransfer.setOnClickListener {

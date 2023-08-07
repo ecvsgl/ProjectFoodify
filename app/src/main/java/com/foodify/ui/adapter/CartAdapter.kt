@@ -4,16 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.foodify.R
 import com.foodify.data.entity.CartItemEntity
-import com.foodify.data.entity.Item
-import com.foodify.databinding.CardItemDesignBinding
 import com.foodify.databinding.CartOrderItemDesignBinding
-import com.foodify.ui.fragment.MainpageFragmentDirections
 import com.foodify.ui.viewmodel.CartViewModel
-import com.foodify.utils.doPageTransfer
 import com.google.android.material.snackbar.Snackbar
 
 class CartAdapter (var mContext:Context, var cartItemsList:List<CartItemEntity>, var cartViewModel: CartViewModel)
@@ -27,6 +23,9 @@ class CartAdapter (var mContext:Context, var cartItemsList:List<CartItemEntity>,
     override fun onBindViewHolder(holder: CardDesignHolder, position: Int) {
         val cartItem = cartItemsList.get(position)
         val d = holder.design
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${cartItem.cartItemPicture}"
+        Glide.with(mContext).load(url).override(100,100).into(d.imageViewItemPicture)
+
         d.cartItemEntityDataBindingVariable = cartItem
 
         d.imageViewCartItemRemoveButton.setOnClickListener {

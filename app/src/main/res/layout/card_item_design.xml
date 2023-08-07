@@ -30,8 +30,9 @@
 
                 <ImageView
                     android:id="@+id/imageViewItemPicture"
-                    android:layout_width="143dp"
-                    android:layout_height="146dp"
+                    android:src="@{itemEntityDataBindingVariable.itemPicture}"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
@@ -55,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
-                    android:text="@{itemEntityDataBindingVariable.itemPrice}"
+                    android:text="@{Integer.toString(itemEntityDataBindingVariable.itemPrice)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageViewItemPicture"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCartItemName" />

@@ -40,7 +40,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:text="Confirm Order"
-            android:onClick="@{()->cartFragmentDataBindingVariable.orderConfirmation()}"
+            android:onClick="@{()->cartFragmentDataBindingVariable.orderConfirmation(buttonCartApprove)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.foodify.data.repo.ItemRepository
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ItemDetailsViewModel (var itemRepository: ItemRepository) : ViewModel() {
+@HiltViewModel
+class ItemDetailsViewModel @Inject constructor (var itemRepository: ItemRepository) : ViewModel() {
     var itemQuantity = MutableLiveData( "1")
 
     fun buttonIncrementClick(currentQuantity:String){
@@ -23,9 +26,9 @@ class ItemDetailsViewModel (var itemRepository: ItemRepository) : ViewModel() {
         }
     }
 
-    fun addToCart(view: View, itemName:String, itemPrice:String, itemQuantity:String){
+    fun addToCart(itemId:Int,itemName:String,itemPicture:String,itemPrice:Int,itemQuantity:Int){
         CoroutineScope(Dispatchers.Main).launch {
-            itemRepository.addToCart(view,itemName,itemPrice,itemQuantity)
+            itemRepository.addToCart(itemId,itemName,itemPicture,itemPrice,itemQuantity)
         }
     }
 }

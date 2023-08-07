@@ -9,11 +9,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.foodify.R
 import com.foodify.databinding.FragmentItemDetailsBinding
 import com.foodify.ui.viewmodel.ItemDetailsViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class ItemDetailsFragment : Fragment() {
     private lateinit var binding : FragmentItemDetailsBinding
@@ -35,6 +38,19 @@ class ItemDetailsFragment : Fragment() {
         val incomingItem = bundle.item
         binding.itemEntityDataBindingVariable = incomingItem
 
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${incomingItem.itemPicture}"
+        Glide.with(this).load(url).override(100,100).into(binding.imageViewItemDetailsPicture)
+
+
+        binding.buttonAddToCart.setOnClickListener {
+            if(binding.itemQuantityDataBindingVariable.toString().toInt()==1){
+                Snackbar.make(it, "${binding.itemQuantityDataBindingVariable.toString()} piece of ${incomingItem.itemName} added to cart.", Snackbar.LENGTH_SHORT).show()
+            } else {
+                Snackbar.make(it, "${binding.itemQuantityDataBindingVariable.toString()} pieces of ${incomingItem.itemName} added to cart.", Snackbar.LENGTH_SHORT).show()
+            }
+            addToCart(incomingItem.itemId,incomingItem.itemName,incomingItem.itemPicture,incomingItem.ItemPrice,binding.itemQuantityDataBindingVariable.toString())
+        }
+
         return binding.root
     }
     override fun onCreate(savedInstanceState: Bundle?){
@@ -43,8 +59,8 @@ class ItemDetailsFragment : Fragment() {
         viewModel = tempViewModel
     }
 
-    fun addToCart(view: View,itemName:String, itemPrice:String, itemQuantity:String){
-        viewModel.addToCart(view,itemName,itemPrice,itemQuantity)
+    fun addToCart(itemId:Int, itemName:String,itemPicture:String,itemPrice:Int,itemQuantity:String){
+        viewModel.addToCart(itemId,itemName,itemPicture,itemPrice,itemQuantity.toInt())
     }
 
     fun buttonIncrementClick(currentQuantity:String){
