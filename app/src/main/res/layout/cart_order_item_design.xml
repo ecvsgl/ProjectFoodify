@@ -18,9 +18,9 @@
             android:id="@+id/cardViewLeaf"
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:layout_margin="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
             app:cardCornerRadius="15dp">
 
@@ -46,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="@{cartItemEntityDataBindingVariable.cartItemName}"
+                    android:textColor="@color/toolbarThemeColorDark"
                     app:layout_constraintStart_toEndOf="@+id/imageViewItemPicture"
                     app:layout_constraintTop_toTopOf="@+id/imageViewItemPicture" />
 
@@ -54,6 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{String.format(`Unit Price: %s₺`, cartItemEntityDataBindingVariable.cartItemPrice)}"
+                    android:textColor="@color/appThemeColorDark"
                     app:layout_constraintBottom_toTopOf="@+id/textViewCartItemQuantity"
                     app:layout_constraintStart_toStartOf="@+id/textViewCartItemName"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCartItemName" />
@@ -73,13 +75,15 @@
                     android:layout_marginEnd="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageViewItemPicture"
-                    app:srcCompat="@drawable/orange_delete_button_vector" />
+                    app:srcCompat="@drawable/darkcolor_delete_button_vector" />
 
                 <TextView
                     android:id="@+id/textViewCartItemSubtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{String.format(`Total Price: %s₺`, cartItemEntityDataBindingVariable.totalCostOfCartItemEntity)}"
+                    android:textColor="@color/toolbarThemeColorDark"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageViewItemPicture"
                     app:layout_constraintEnd_toEndOf="@+id/imageViewCartItemRemoveButton" />
 

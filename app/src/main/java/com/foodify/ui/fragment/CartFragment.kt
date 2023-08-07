@@ -17,7 +17,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class CartFragment : Fragment() {
     private lateinit var binding : FragmentCartBinding
     private lateinit var viewModel : CartViewModel

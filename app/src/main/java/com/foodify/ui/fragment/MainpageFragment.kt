@@ -40,9 +40,23 @@ class MainpageFragment : Fragment() {
         binding.mainpageToolbarTitle = "Foodify"
 
         viewModel.itemsList.observe(viewLifecycleOwner){
-            val adapter = ItemAdapter(requireContext(),it,viewModel)
-            binding.itemAdapterDataBindingVariable = adapter
+            if (binding.recyclerView.adapter == null){
+                val adapter = ItemAdapter(requireContext(),it,viewModel)
+                binding.itemAdapterDataBindingVariable = adapter
+            } else {
+                (binding.recyclerView.adapter as ItemAdapter).updateItems(it)
+            }
+
         }
+        binding.searchViewBox.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.filterList(newText)
+                return true
+            }
+        })
         return binding.root
     }
     fun floatingActionButtonClick(it:View){

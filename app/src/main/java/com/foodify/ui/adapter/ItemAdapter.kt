@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.foodify.R
@@ -44,4 +45,9 @@ class ItemAdapter (var mContext:Context, var itemsList:List<Item>, var viewModel
     override fun getItemCount(): Int {
         return itemsList.size
     }
+    fun updateItems(newItems : List<Item>){
+        this.itemsList = newItems
+        notifyDataSetChanged()
+    }
+
 }

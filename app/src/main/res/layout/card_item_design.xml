@@ -18,10 +18,10 @@
             android:id="@+id/cardViewLeaf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="15dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +30,6 @@
 
                 <ImageView
                     android:id="@+id/imageViewItemPicture"
-                    android:src="@{itemEntityDataBindingVariable.itemPicture}"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
                     android:layout_marginStart="24dp"
@@ -45,8 +44,8 @@
                     android:id="@+id/textViewCartItemName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:text="@{itemEntityDataBindingVariable.itemName}"
+                    android:textColor="@color/appThemeColorDark"
                     app:layout_constraintStart_toStartOf="@+id/imageViewItemPicture"
                     app:layout_constraintTop_toBottomOf="@+id/imageViewItemPicture" />
 
@@ -54,9 +53,11 @@
                     android:id="@+id/textViewCartItemPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@{String.format(`%s₺`, Integer.toString(itemEntityDataBindingVariable.itemPrice))}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageViewItemPicture"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCartItemName" />
@@ -68,7 +69,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCartItemPrice"
                     app:layout_constraintEnd_toEndOf="@+id/imageViewItemPicture"
                     app:layout_constraintTop_toTopOf="@+id/textViewCartItemName"
-                    app:srcCompat="@drawable/orange_add_button_vector" />
+                    app:srcCompat="@drawable/darkcolor_add_button_vector" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

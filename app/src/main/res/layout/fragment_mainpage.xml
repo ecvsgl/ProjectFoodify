@@ -28,21 +28,35 @@
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:onClick="@{()->mainpageFragmentDataBindingVariable.floatingActionButtonClick(floatingActionButton)}"
-            android:src="@drawable/orange_shopping_cart_vector"
+            android:src="@drawable/darkcolor_shopping_cart_vector"
+            app:tint="@color/appThemeColorDark"
+            app:backgroundTint="@color/appThemeColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarMainpage"
-            app:title="@{mainpageToolbarTitle}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/toolbarThemeColorDark"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pacifico"
+                android:text="@{mainpageToolbarTitle}"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                tools:layout_editor_absoluteX="179dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -54,8 +68,32 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarMainpage"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
             app:spanCount="2" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarMainpage">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchViewBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:queryHint="Search here..."
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"/>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

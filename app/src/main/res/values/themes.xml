@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Foodify" parent="Base.Theme.Foodify" />
+    <style name="Theme.Foodify" parent="Base.Theme.Foodify">
+        <item name="colorPrimaryDark">@color/toolbarThemeColorDark</item>
+        <item name="colorAccent">@color/appThemeColorDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:statusBarColor">@color/toolbarThemeColorDark</item>
+    </style>
 </resources>

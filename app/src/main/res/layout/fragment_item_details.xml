@@ -30,7 +30,11 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/appThemeColorDark"
             android:text="Add to Cart"
+            android:textStyle="bold"
+            app:circularflow_defaultRadius="15dp"
+            app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -38,15 +42,31 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarDetailspage"
-            app:title="@{itemDetailsToolbarTitle}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/toolbarThemeColorDark"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pacifico"
+            android:text="@{itemDetailsToolbarTitle}"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            tools:layout_editor_absoluteX="179dp"
+            tools:layout_editor_absoluteY="17dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+
 
         <ImageView
             android:id="@+id/imageViewItemDetailsPicture"
@@ -65,7 +85,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@{String.format(`%s₺`, ItemEntityDataBindingVariable.itemPrice)}"
+            android:textColor="@color/toolbarThemeColorDark"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@{ItemEntityDataBindingVariable.itemName}"
+            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
@@ -87,7 +110,7 @@
             android:id="@+id/imageViewIncrementButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/orange_add_button_vector"
+            android:src="@drawable/darkcolor_add_button_vector"
             android:onClick="@{() -> itemDetailsFragmentDataBindingVariable.buttonIncrementClick(textViewDetailsItemQuantity.getText().toString())}"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewDecrementButton"
             app:layout_constraintEnd_toEndOf="@+id/imageViewItemDetailsPicture"
@@ -99,7 +122,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/orange_remove_button_vector"
+            android:src="@drawable/darkcolor_remove_button_vector"
             android:onClick="@{() -> itemDetailsFragmentDataBindingVariable.buttonDecrementClick(textViewDetailsItemQuantity.getText().toString())}"
             app:layout_constraintStart_toStartOf="@+id/imageViewItemDetailsPicture"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailsItemName" />

@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="toolbarThemeColorDark">#034B88</color>
+    <color name="appThemeColorDark">#1177CF</color>
+    <color name="appThemeColor">#6AC5D5</color>
 </resources>

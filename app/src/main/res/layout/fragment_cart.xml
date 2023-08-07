@@ -22,15 +22,27 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarCartpage"
-            app:title="@{cartToolbarTitle}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/toolbarThemeColorDark"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pacifico"
+                android:text="@{cartToolbarTitle}"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                tools:layout_editor_absoluteX="179dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <Button
             android:id="@+id/buttonCartApprove"
@@ -39,8 +51,12 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/appThemeColorDark"
             android:text="Confirm Order"
+            android:textStyle="bold"
             android:onClick="@{()->cartFragmentDataBindingVariable.orderConfirmation(buttonCartApprove)}"
+            app:circularflow_defaultRadius="15dp"
+            app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -52,7 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="TextView"
+            android:textColor="@color/toolbarThemeColorDark"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/buttonCartApprove"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
