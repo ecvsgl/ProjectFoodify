@@ -34,7 +34,7 @@ class CartFragment : Fragment() {
             binding.cartAdapterDataBindingVariable = adapter
         }
         viewModel.totalOrderPrice.observe(viewLifecycleOwner){
-            totalPrice -> binding.textViewCartCheckoutTotalCost.text = totalPrice.toString()
+            totalPrice -> binding.textViewCartCheckoutTotalCost.text = "Order Price: ${totalPrice}₺"
         }
         return binding.root
     }

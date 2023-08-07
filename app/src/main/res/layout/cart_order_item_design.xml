@@ -53,7 +53,7 @@
                     android:id="@+id/textViewCartItemPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(cartItemEntityDataBindingVariable.cartItemPrice)}"
+                    android:text="@{String.format(`Unit Price: %s₺`, cartItemEntityDataBindingVariable.cartItemPrice)}"
                     app:layout_constraintBottom_toTopOf="@+id/textViewCartItemQuantity"
                     app:layout_constraintStart_toStartOf="@+id/textViewCartItemName"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCartItemName" />
@@ -62,7 +62,7 @@
                     android:id="@+id/textViewCartItemQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(cartItemEntityDataBindingVariable.cartItemQuantity)}"
+                    android:text="@{String.format(`Quantity: %s`, cartItemEntityDataBindingVariable.cartItemQuantity)}"
                     app:layout_constraintBottom_toBottomOf="@+id/imageViewItemPicture"
                     app:layout_constraintStart_toStartOf="@+id/textViewCartItemPrice" />
 
@@ -79,7 +79,7 @@
                     android:id="@+id/textViewCartItemSubtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(cartItemEntityDataBindingVariable.totalCostOfCartItemEntity)}"
+                    android:text="@{String.format(`Total Price: %s₺`, cartItemEntityDataBindingVariable.totalCostOfCartItemEntity)}"
                     app:layout_constraintBottom_toBottomOf="@+id/imageViewItemPicture"
                     app:layout_constraintEnd_toEndOf="@+id/imageViewCartItemRemoveButton" />
 

@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
-                    android:text="@{Integer.toString(itemEntityDataBindingVariable.itemPrice)}"
+                    android:text="@{String.format(`%s₺`, Integer.toString(itemEntityDataBindingVariable.itemPrice))}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageViewItemPicture"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCartItemName" />
