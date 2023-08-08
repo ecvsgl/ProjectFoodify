@@ -10,3 +10,6 @@ The project uses API endpoints through Retrofit2 library, that provide several f
 
 ### UI Screenshots
 
+![](https://raw.githubusercontent.com/ecvsgl/ProjectFoodify/tree/master/screenshots/ss1.png)
+
+**Figure 1:** Mainpage Fragment.
