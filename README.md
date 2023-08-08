@@ -11,15 +11,15 @@ The project uses API endpoints through Retrofit2 library, that provide several f
 ### UI Screenshots
 
 <img src="./screenshots/ss1.png" width=270 height=480>
-Figure 1: Mainpage Fragment.
+Figure 1: Mainpage Fragment UI.
 
 <img src="./screenshots/ss2.png" width=270 height=480>
-Figure 1: Mainpage Fragment.
+Figure 2: SearchView Functionality
 
 <img src="./screenshots/ss3.png" width=270 height=480>
-Figure 1: Mainpage Fragment.
+Figure 3: ItemDetails Fragment UI.
 
 <img src="./screenshots/ss4.png" width=270 height=480>
-Figure 1: Mainpage Fragment.
+Figure 4: Cart Fragment UI.
 
 
