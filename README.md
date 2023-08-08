@@ -11,4 +11,15 @@ The project uses API endpoints through Retrofit2 library, that provide several f
 ### UI Screenshots
 
 <img src="./screenshots/ss1.png" width=270 height=480>
-**Figure 1:** Mainpage Fragment.
+Figure 1: Mainpage Fragment.
+
+<img src="./screenshots/ss2.png" width=270 height=480>
+Figure 1: Mainpage Fragment.
+
+<img src="./screenshots/ss3.png" width=270 height=480>
+Figure 1: Mainpage Fragment.
+
+<img src="./screenshots/ss4.png" width=270 height=480>
+Figure 1: Mainpage Fragment.
+
+
